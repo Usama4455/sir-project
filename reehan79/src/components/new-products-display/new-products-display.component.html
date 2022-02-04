@@ -1,0 +1,152 @@
+<div class="new-product-display-component animate-item">
+  <!-- skeleton text until data not loaded -->
+
+  <div *ngIf="p==1" style="padding-left: 10px;">
+    <ion-skeleton-text animated style="width: 100%; height: 110px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 80%; height: 15px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%; height: 15px;">
+    </ion-skeleton-text>
+    <ion-skeleton-text animated *ngIf="config.cartButton==1" style="width: 100%; height: 25px;">
+    </ion-skeleton-text>
+
+  </div>
+
+  <div *ngIf="p!=1">
+
+    <ion-card class="ion-no-padding" *ngIf="type=='normal' || type=='recent' || type=='wishList'" class="animated fadeIn">
+      <div>
+        <div *ngIf="p.on_sale==true">{{ 'SALE' }}</div>
+        <div *ngIf="p.featured">{{'Featured' }}</div>
+      </div>
+      <!-- <img id="image" *ngIf="p.images" src="{{p.images[0].src}}" (click)="showProductDetail()"> -->
+      <!-- <p (click)="showProductDetail()">{{p.name}}</p> -->
+      <ion-grid id="outerGrid" class="ion-no-padding">
+        <ion-row id="bigRow" class="ion-no-padding">
+          <ion-col id="bigImageCol" size="8" class="ion-no-padding">
+          <!--  <ion-img id="newimage" src="assets/badge_new.png" *ngIf="checkProductNew()"></ion-img> -->
+            <div id="newimage">
+              <ion-img src="assets/badge_new.png" *ngIf="checkProductNew()"></ion-img>
+            </div>
+            <!--<img id="image" *ngIf="p.images" src="{{p.images[0].src}}" (click)="showProductDetail()">-->
+            <img-loader img id="image" src="{{p.images[0].shop_catalog}}" (click)="showProductDetail()" useImg></img-loader>
+
+
+          </ion-col>
+
+          <ion-col id= "smallCol" size="4" class="ion-no-padding">
+            <ion-grid id="innerGrid" class="ion-no-padding">
+              <ion-row id= "innerRow1" class="ion-no-padding">
+                <ion-col id="SmallImage1" class="ion-no-padding">
+                  <div *ngIf="p.number_of_images > 1; then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock>
+                    <!--<img id="image1" src="{{p.images[1].shop_catalog}}" (click)="showProductDetail()">-->
+                    <img-loader id="image1" src="{{p.images[1].shop_catalog}}" (click)="showProductDetail()" useImg></img-loader>
+                  </ng-template>
+                  <ng-template #elseBlock>
+                    <!--<img id="image11" src="{{p.images[0].shop_catalog}}" (click)="showProductDetail()">-->
+                    <img-loader id="image1" src="{{p.images[0].shop_catalog}}" (click)="showProductDetail()" useImg></img-loader>
+
+                  </ng-template>
+                </ion-col>
+              </ion-row>
+
+
+              <ion-row id= "innerRow2" class="ion-no-padding">
+                <ion-col  id="SmallImage2" class="ion-no-padding">
+                  <div class="overlay"></div>
+                  <div class="overlay-text">+{{p.number_of_images-2}}</div>
+                  <div *ngIf="p.number_of_images > 2; then thenBlockTwo else elseBlockTwo">
+                  </div>
+                  <ng-template #thenBlockTwo>
+                    <!--<img class="overlay" id="image2" src="{{p.images[2].shop_catalog}}" (click)="showProductDetail()">-->
+                    <img-loader  id="image2" src="{{p.images[2].shop_catalog}}" (click)="showProductDetail()" useImg></img-loader>
+                     <!-- <ion-label>+{{p.number_of_images-2}}</ion-label> -->
+                  </ng-template>
+                  <ng-template #elseBlockTwo>
+                    <!-- <img class="overlay" id="image21" src="{{p.images[0].shop_catalog}}" (click)="showProductDetail()">-->
+                   <img-loader id="image21" src="{{p.images[0].shop_catalog}}" (click)="showProductDetail()" useImg></img-loader>
+
+                  </ng-template>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-no-padding">
+          <ion-col id="prodName" class="ion-no-padding">
+          <!--  <ion-label   class="ion-label-align-left">{{p.name}}</ion-label> -->
+            <div>{{p.name}}</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-no-padding">
+          <ion-col id="prodPrice" class="ion-no-padding">
+          <!--  <ion-label id  class="ion-label-align-left">Rs .{{p.price}}</ion-label> -->
+            <div>Rs .{{p.price}}</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-bottom-row-padding">
+          <ion-col size="2.3">
+            <ion-button (click)="clickDownload()" class="share-button" fill="clear" button-type="string">
+              <div>
+                <ion-icon class="icon-size" color="primary" name="arrow-down-outline"></ion-icon><br>
+                Download
+              </div>
+            </ion-button>
+          </ion-col>
+
+            <ion-col size="2.3">
+              <ion-button (click)="clickFacebook()" class="share-button"
+                          fill="clear" button-type="string">
+                <div>
+                  <ion-icon class="icon-size" color="primary" name="logo-facebook"></ion-icon><br>
+                  Facebook
+                </div>
+              </ion-button>
+            </ion-col>
+
+          <ion-col size="2.3">
+            <ion-button (click)="clickOthers()" class="share-button"
+                        fill="clear" button-type="string">
+              <div>
+                <ion-icon class="icon-size" color="primary" name="share-social-outline"></ion-icon><br>
+                Others
+              </div>
+            </ion-button>
+          </ion-col>
+
+
+          <ion-col size="5.1">
+            <!--<ion-button color="primary" (click)="whatsAppShare()">Share Via WhatsApp</ion-button> -->
+            <ion-button  class="share-button-whatsapp" (click)="clickWhatsApp()">
+                <ion-icon  class="icon-size-whatsapp" name="logo-whatsapp"></ion-icon>
+              <span>Share Now</span>
+              </ion-button>
+          </ion-col>
+        </ion-row>
+       <!-- <ion-row class="ion-no-padding">
+          <ion-col size="10" class="ion-no-padding">
+            <h4 [innerHTML]="p.price_html"></h4>
+          </ion-col>
+          <ion-col size="2"  class="ion-text-center ion-no-padding">
+            <ion-icon (click)="clickWishList()" *ngIf="isLiked==0" name="heart-empty"></ion-icon>
+            <ion-icon (click)="clickWishList()" *ngIf="isLiked!=0" name="heart"></ion-icon>
+          </ion-col>
+        </ion-row> -->
+        <!-- <ion-row class="ion-no-padding">
+          <ion-button *ngIf="type=='recent'" color="danger" (click)="removeRecent()">{{'REMOVE'|translate}}</ion-button>
+          <ion-button *ngIf="type=='wishList'" color="danger" (click)="removeWishList()">{{'REMOVE'|translate}}
+          </ion-button>
+        </ion-row> -->
+
+      </ion-grid>
+    </ion-card>
+
+    <!-- //====================================  list view for shop page ==================================== -->
+
+  </div>
+
+</div>

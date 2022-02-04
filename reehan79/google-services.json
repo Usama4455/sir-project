@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "549453608976",
+    "firebase_url": "https://life-admin-1b721.firebaseio.com",
+    "project_id": "life-admin-1b721",
+    "storage_bucket": "life-admin-1b721.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549453608976:android:8bec0a5f5ee63f399d3295",
+        "android_client_info": {
+          "package_name": "com.my.sharre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549453608976-d6k8cmccr63buoauo07c8h3hmfs33e8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoCVz_9xiuJNzzMaSfxlUWVf6G8B9-fho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549453608976-d6k8cmccr63buoauo07c8h3hmfs33e8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="home-page-image" >
+      <ion-img src="assets/logo_header-4.png" alt="logo"></ion-img>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" routerLink="/search" routerDirection="forward">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" routerLink="/cart" routerDirection="forward">
+        <ion-icon name="basket"></ion-icon>
+        <ion-badge color="secondary">{{shared.cartTotalItems()}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)" class="home-page-1">
+  <app-banner></app-banner>
+
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding">
+
+      <ion-col *ngFor="let c of categories" (click)="openProductsShadow(c.id,c.name)"
+               class="animate-item" size="4" size-sm="4" size-md="4" size-lg="3" class="ion-no-padding">
+        <div *ngIf="c==1" style="padding-left: 10px;">
+          <ion-skeleton-text animated style="width: 100%; height: 110px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 80%; height: 15px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%; height: 15px;"></ion-skeleton-text>
+        </div>
+
+        <div *ngIf="c!=1">
+        <ion-card>
+          <img-loader id="image1" src="{{c.image}}" useImg></img-loader>
+
+          <ion-text>
+            <h6>{{c.name|translate}}</h6>
+            <p>{{c.count}} {{'Products'| translate }}</p>
+          </ion-text>
+        </ion-card>
+        </div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding">
+      <ion-col *ngFor="let p of products" size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="4"  class="ion-no-padding">
+        <app-new-products-display [data]="p" [type]="'normal'"></app-new-products-display>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="10px" #infinite (ionInfinite)="getFilterdProducts()">
+
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+  <!--
+  <ion-segment [(ngModel)]="segments">
+    <ion-segment-button value="topSeller">{{ 'Newest' | translate }}</ion-segment-button>
+    <ion-segment-button value="deals">{{ 'On Sale' | translate }} </ion-segment-button>
+    <ion-segment-button value="mostLiked"> {{ 'Featured' | translate }}</ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="segments"> -->
+
+    <!-- first swipe slider -->
+  <!--  <ion-slides *ngSwitchCase="'topSeller'" [options]="sliderConfig">
+      <ion-slide *ngFor="let p of shared.tab1">
+        <app-product [data]="p" [type]="'normal'"></app-product>
+      </ion-slide>
+      <ion-slide>
+        <ion-button fill="clear" (click)="openProducts('latest')"> {{'Shop More'| translate}}
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </ion-button>
+      </ion-slide>
+    </ion-slides> -->
+
+    <!-- 2nd swipe slider -->
+   <!-- <ion-slides *ngSwitchCase="'deals'" [options]="sliderConfig">
+      <ion-slide *ngFor="let p of shared.tab2">
+        <app-product [data]="p" [type]="'normal'"></app-product>
+      </ion-slide>
+      <ion-slide>
+        <ion-button fill="clear" (click)="openProducts('latest')"> {{'Shop More'| translate}}
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </ion-button>
+      </ion-slide>
+    </ion-slides> -->
+
+    <!-- 3rd swipe slider -->
+   <!-- <ion-slides *ngSwitchCase="'mostLiked'" [options]="sliderConfig">
+      <ion-slide *ngFor="let p of shared.tab3">
+        <app-product [data]="p" [type]="'normal'"></app-product>
+      </ion-slide>
+      <ion-slide>
+        <ion-button fill="clear" (click)="openProducts('featured')"> {{'Shop More'| translate}}
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </ion-button>
+      </ion-slide>
+    </ion-slides>
+
+  </div> -->
+
+
+  <!-- For Vendor List -->
+ <!--<app-vendor-list></app-vendor-list> -->
+
+  <!-- for scrollable segment and all products -->
+ <!-- <app-sliding-tabs [type]="'text'"></app-sliding-tabs> -->
+
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" *ngIf="scrollTopButton">
+  <ion-fab-button color="secondary" (click)="scrollToTop()">
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

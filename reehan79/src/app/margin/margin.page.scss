@@ -1,0 +1,44 @@
+
+ion-content {
+  ion-card {
+    ion-card-content {
+      padding: 0px !important;
+      ion-grid {
+        ion-row {
+          ion-col {
+            padding: 0px !important;
+            margin: 0px !important;
+            ion-item {
+              --padding-bottom: 0px !important;
+
+              ion-label {
+                font-size: 14px;
+                padding: 0px !important;
+                margin: 0px;
+              }
+
+              ion-input {
+                font-size: 14px;
+              }
+            }
+
+
+          }
+        }
+      }
+    }
+  }
+}
+
+ion-footer {
+  .toolbar {
+    padding-left: 10px;
+  }
+  ion-button {
+    height: 45px;
+    margin: 0;
+    margin-bottom: 0;
+  }
+}
+
+

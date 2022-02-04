@@ -1,0 +1,155 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title> {{'Payment Information'| translate }} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #userForm="ngForm">
+
+  <ion-card>
+    <ion-card-header>
+      <h4>{{'Jazz Cash Account'|translate}}</h4>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+              <ion-checkbox name="jazzcash" (ionChange)="jazzCashChange()" disabled="{{jazzCashDisable}}" [(ngModel)]="jazzCash"  slot="start" color="primary"></ion-checkbox>
+        <ion-label>{{this.shared.customerData.username}}</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h5> * Transfer charges are applicable as per the State bank's policy! </h5>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <h4>{{'Easy Paisa Account'|translate}}</h4>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-checkbox name="easypaisa" (ionChange)="easyPaisaChange()"  slot="start" disabled="{{easyPaisaDisable}}" [(ngModel)]="easyPaisa" color="primary"></ion-checkbox>
+              <ion-label>{{this.shared.customerData.username}}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h5> * Transfer charges are applicable as per the State bank's policy! </h5>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <h4>{{'Bank Account'|translate}}</h4>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-checkbox name="bank" (ionChange)="bankChange()" disabled="{{bankDisable}}" [(ngModel)]="bank" slot="start" color="primary"></ion-checkbox>
+              <ion-label>Choose Bank Account as Payment Method</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Account Title: </ion-label>
+              <ion-input type="text" disabled="{{bankDisable}}" [(ngModel)]="accountTitle" name="account_title" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Account Number: </ion-label>
+            <ion-input type="text" disabled="{{bankDisable}}" [(ngModel)]="accountNumber" name="account_number" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Reenter Account Number: </ion-label>
+              <ion-input type="text" disabled="{{bankDisable}}" [(ngModel)]="accountNumberReenter" name="account_number_re" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Bank: </ion-label>
+              <ion-input type="text" disabled="{{bankDisable}}" [(ngModel)]="bankName" name="bank_name" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <h5> * Transfer charges are applicable as per the State bank's policy! </h5>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  </form>
+
+  <!-- <ion-grid>
+     <ion-row>
+       <ion-col size="6">
+         <ion-label>Bank Name</ion-label>
+       </ion-col>
+       <ion-col size="16">
+         <ion-label>{{this.shared.bankName}}</ion-label>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="6">
+         <ion-label>Account No</ion-label>
+       </ion-col>
+       <ion-col size="16">
+         <ion-label>{{this.shared.accountNumber}}</ion-label>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="6">
+         <ion-label>Branch</ion-label>
+       </ion-col>
+       <ion-col size="16">
+         <ion-label>{{this.shared.branchName}}</ion-label>
+       </ion-col>
+     </ion-row>
+   </ion-grid> -->
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-button color="secondary" expand="full" (click)="onSubmit()" disabled="{{submitButtonDisable}}">{{'Save'|translate}}
+  </ion-button>
+</ion-footer>
