@@ -6,8 +6,6 @@ import {ModalController, ToastController} from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { AngularFireAnalytics } from '@angular/fire/analytics';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
-
-
 @Component({
   selector: 'app-sharing-progress',
   templateUrl: './sharing-progress.page.html',
@@ -18,10 +16,10 @@ export class SharingProgressPage implements OnInit {
     @Input('h') h;
     @Input('clicked') clicked;
 
-  //  p: any;
-  //  h: any;
+   //p: any;
+   //h: any;
    // clicked: any;
-public filePathArray  = [];
+public filePathArray :string;
 public progressCount = 0;
 public descProgressCount = 0;
 public descriptionNew = '';
@@ -193,7 +191,7 @@ public descriptionNew = '';
 
   async  downloadImage() {
       let promises = [];
-      this.filePathArray = [];
+      this.filePathArray ='';
       this.progressCount = 0;
       let progressCounttmp = 0;
       for (let i = 0; i < this.p.number_of_images; i++) {
@@ -202,7 +200,7 @@ public descriptionNew = '';
       console.log(fileUri);
       const fileName = fileUri.substring(fileUri.lastIndexOf('/') + 1);
       const filePath = this.file.cacheDirectory + fileName;
-       this.filePathArray.push(filePath);
+       this.filePathArray.concat(filePath);
       // console.log(filePath);
         promises.push(this.http.downloadFile(fileUri, {}, {}, filePath).then( () => {
             //this.progressCount = (i + 1) / (this.p.number_of_images);
